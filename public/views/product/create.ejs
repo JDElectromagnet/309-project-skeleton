@@ -1,32 +1,40 @@
 <html>
     <head>
-        <title> Create Product </title>
+        <title>Create Arctile</title>
     </head>
     <body>
-        <h1> Create Product </h1>
-        <div>Title: 
-        <input type="text" id="title">
-        </div>
-        <br>
-        <div>Content:
-        <textarea id="content"></textarea>
-        </div>
-        
+        <h1>New Product</h1>
+        <div>Name:
+            <input type="text" id="name"/>
+        </div> <br>
+        <div>Description:
+            <textarea id="description"></textarea>
+        </div> <br>
+        <div>Price:
+            <input type="number" id="price"/>
+        </div> <br>
+        <div>Quantity:
+            <input type="number" id="quantity"/>
+        </div> <br>
         <button id="submit">Submit</button>
         
         <script src="/lib/jquery/dist/jquery.min.js"></script>
-        
         <script>
-            var product ={title: "",content: ""};
-            
-            $("#title").change(function(){
-               product.title = $("#title").val();
-               
+            var product = {title: "", content: ""};
+            $("#name").change(function(){
+                product.name = $("#name").val();
             });
             
-            $("#content").change(function(){
-               product.content = $("#content").val();
-               
+            $("#description").change(function(){
+                product.description = $("#description").val();
+            });
+            
+            $("#price").change(function(){
+                product.price = $("#price").val();
+            });
+            
+            $("#quantity").change(function(){
+                product.quantity = $("#quantity").val();
             });
             
             $("#submit").click(function(){
@@ -36,11 +44,9 @@
                     url: "/api/products",
                     data: product
                 }).done(function(response){
-                    console.log(response)
-                
+                    console.log(response);
                 });
             });
         </script>
-        
     </body>
 </html>
