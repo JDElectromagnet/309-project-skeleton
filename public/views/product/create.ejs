@@ -16,6 +16,7 @@
         <div>Quantity:
             <input type="number" id="quantity"/>
         </div> <br>
+        <div id="error"></div>
         <button id="submit">Submit</button>
         
         <script src="/lib/jquery/dist/jquery.min.js"></script>
@@ -27,10 +28,13 @@
             
             $("#description").change(function(){
                 product.description = $("#description").val();
+                
             });
             
             $("#price").change(function(){
-                product.price = $("#price").val();
+                product.price = undefined;
+                //product.price = $("#price").val();
+                
             });
             
             $("#quantity").change(function(){
@@ -45,6 +49,10 @@
                     data: product
                 }).done(function(response){
                     console.log(response);
+                    window.location.replace("/products/"+response._id);
+                }).fail(function(response){
+                    $("#error").text(JSON.parse(response.responseText).message);
+                    console.log(JSON.parse(response.responseText).message);
                 });
             });
         </script>
